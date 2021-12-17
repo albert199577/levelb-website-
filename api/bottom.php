@@ -6,7 +6,7 @@
 // $Total->save($total);
 
 //the same top
-$Total->save(['id' => 1, 'total' => $_POST['total']]);
+$Bottom->save(['id' => 1, 'bottom' => $_POST['bottom']]);
 
-to("../back.php?do=total");
+to("../back.php?do=bottom");
 ?>
