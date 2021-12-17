@@ -1,6 +1,6 @@
 <?php
 
-date_default_timezone_get("Asia/Taipei");
+date_default_timezone_set("Asia/Taipei");
 
 session_start();
 
@@ -37,6 +37,30 @@ class DB {
                 foreach ($arg[0] as $key => $value) {
                     $tmp[] = "`$key` = '$value'";
                 }
+                $sql .= " WHERE " . implode(" AND ", $arg[0]) . " " . $arg[1];
+            break;
+            case 1:
+                if (is_array($arg[0])) {
+                    foreach ($arg[0] as $key => $value) {
+                    $tmp[] = "`$key` = '$value'";
+                    }
+                    $sql .= " WHERE " . implode(" AND ", $arg[0]);
+                } else {
+                    $sql .= $arg[0];
+                }
+            break;
+        }
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function math($method, $col, ...$arg) {
+        $sql = "SELECT $method($col) FROM $this->table ";
+        
+        switch(count($arg)) {
+            case 2:
+                foreach ($arg[0] as $key => $value) {
+                    $tmp[] = "`$key` = '$value'";
+                }
                 $sql .= " WHERE " . implode(" AND " . $arg[0]) . " " . $arg[1];
             break;
             case 1:
@@ -46,23 +70,26 @@ class DB {
                     }
                     $sql .= " WHERE " . implode(" AND ", $arg[0]);
                 } else {
-                    $sql .= $arg[1];
+                    $sql .= $arg[0];
                 }
             break;
         }
-        if (isset($arg[0])) {
-            
-
-        }
-        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function math($method, $col, ...$arg) {
-
         return $this->pdo->query($sql)->fetchColumn();
     }
 
     public function save($array) {
+        if (isset($array['id'])) {
+            //update
+            $sql = "UPDATE $this->table SET " . implode(" ,", $tmp) . "WHERE `id` = '{$array['id']}'";
+            foreach ($array as $key => $value) {
+                $tmp[] = "`$key` = '$value'";
+                $set = implode(" ,", $tmp);
+            }
+        } else {
+            //insert
+            $sql = "INSERT INTO $this->table (`" . implode("`, `", array_keys($array)) . "`) VALUES ('" . implode("', '", array_values($array)) . "')";
+        }
+        $sql = "";
 
         return $this->pdo->exec($sql);
     }
@@ -98,5 +125,20 @@ function to($url) {
     header("location:" . $url);
 }
 
+
+$Total = new DB('total');
+$Bottom = new DB('bottom');
+$Title = new DB('title');
+$Ad = new DB('ad');
+$Mvim = new DB('mvim');
+$Image = new DB('image');
+$News = new DB('news');
+$Admin = new DB('admin');
+$Menu = new DB('menu');
+
+//TEST
+// $bd = new DB('total');
+// echo $bd->find(1)['total'];
+// print_r($bd->all());
 
 ?>
