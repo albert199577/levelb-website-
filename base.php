@@ -80,17 +80,15 @@ class DB {
     public function save($array) {
         if (isset($array['id'])) {
             //update
-            $sql = "UPDATE $this->table SET " . implode(" ,", $tmp) . "WHERE `id` = '{$array['id']}'";
             foreach ($array as $key => $value) {
                 $tmp[] = "`$key` = '$value'";
                 $set = implode(" ,", $tmp);
             }
+            $sql = "UPDATE $this->table SET " . implode(" ,", $tmp) . "WHERE `id` = '{$array['id']}'";
         } else {
             //insert
             $sql = "INSERT INTO $this->table (`" . implode("`, `", array_keys($array)) . "`) VALUES ('" . implode("', '", array_values($array)) . "')";
         }
-        $sql = "";
-
         return $this->pdo->exec($sql);
     }
 
@@ -140,5 +138,13 @@ $Menu = new DB('menu');
 // $bd = new DB('total');
 // echo $bd->find(1)['total'];
 // print_r($bd->all());
+
+
+if (!isset($_SESSION['total'])) {
+    $total = $Total->find(1);
+    $total['total']++;
+    $Total->save($total);
+    $_SESSION['total'] = $total['total'];
+}
 
 ?>
