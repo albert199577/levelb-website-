@@ -198,9 +198,6 @@ $Menu = new DB('menu');
 $tt = $_GET['do'] ?? '';
 
 switch ($tt) {
-    case "title":
-        $db = $Title;
-    break;
     case "ad":
         $db = $Ad;
     break;
@@ -225,7 +222,9 @@ switch ($tt) {
     case "menu":
         $db = $Menu;
     break;
-
+    default :
+        $db = $Title;
+    break;
 }
 //TEST
 // $bd = new DB('total');

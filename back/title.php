@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli"><?=$db -> title;?></p>
-    <form method="post" target="back" action="?do=tii">
+    <form method="post" action="./api/edit_title.php">
         <table width="100%">
             <tbody>
                 <tr class="yel">
@@ -15,23 +15,24 @@
                 $rows = $db -> all();
 
                 foreach ($rows as $key => $value) {
-                    
+                    $checked = ($value['sh'] == 1) ? 'checked' : '';
                 ?>
                 <tr class="">
                     <td width="45%">
                         <img src="./img/<?=$value['img'];?>" alt="" width="300px" height="30px">
                     </td>
                     <td width="23%">
-                        <input type="text" name="text" value="<?=$value['text'];?>">
+                        <input type="text" name="text[]" value="<?=$value['text'];?>">
                     </td>
                     <td width="7%">
-                        <input type="radio" name="sh" value="<?=$value['id'];?>">
+                        <input type="radio" name="sh" value="<?=$value['id'];?>" <?=$checked?>>
                     </td>
                     <td width="7%">
                         <input type="checkbox" name="del[]" value="<?=$value['id'];?>">
                     </td>
+                        <input type="hidden" name="id[]" value="<?=$value['id'];?>">
                     <td>
-                        <input type="button" onclick="op('#cover','#cvr','./modal/update_title.php')" value="更新圖片">
+                        <input type="button" onclick="op('#cover','#cvr','./modal/upload_title.php?id=<?=$value['id'];?>')" value="更新圖片">
                     </td>
                 </tr>
 

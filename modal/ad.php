@@ -3,12 +3,8 @@
 <form action="" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>標題區圖片:</td>
-            <td><input type="file" value=""></td>
-        </tr>
-        <tr>
-            <td>標題區替代文字:</td>
-            <td><input type="text" name="" id=""></td>
+            <td>動態文字:</td>
+            <td><input type="text" value=""></td>
         </tr>
     </table>
     <div class="">
