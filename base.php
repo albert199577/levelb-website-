@@ -173,9 +173,11 @@ class DB {
 }
 
 
-// function () {
-
-// }
+function dd($array) {
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+}
 
 
 function to($url) {
