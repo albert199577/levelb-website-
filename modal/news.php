@@ -1,14 +1,14 @@
-<h3>新增標題圖片</h3>
+<h3>新增最新消息資料</h3>
 <hr>
 <form action="./api/add.php?do=<?=$_GET['table'];?>" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>標題區圖片:</td>
-            <td><input type="file" value="" name="img"></td>
-        </tr>
-        <tr>
-            <td>標題區替代文字:</td>
-            <td><input type="text" name="text" id=""></td>
+            <td>最新消息資料:</td>
+            <td>
+                <textarea name="text" id="" cols="30" rows="10">
+                    <?=$rows['text'];?>
+                </textarea>
+            </td>
         </tr>
     </table>
     <div class="">

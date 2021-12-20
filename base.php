@@ -148,6 +148,7 @@ class DB {
             //insert
             $sql = "INSERT INTO $this->table (`" . implode("`, `", array_keys($array)) . "`) VALUES ('" . implode("', '", array_values($array)) . "')";
         }
+        echo $sql;
         return $this->pdo->exec($sql);
     }
 

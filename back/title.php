@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli"><?=$db -> title;?></p>
-    <form method="post" action="./api/edit_title.php">
+    <form method="post" action="./api/edit_title.php?do=<?=$db -> title;?>">
         <table width="100%">
             <tbody>
                 <tr class="yel">
@@ -35,19 +35,16 @@
                         <input type="button" onclick="op('#cover','#cvr','./modal/upload_title.php?id=<?=$value['id'];?>')" value="更新圖片">
                     </td>
                 </tr>
-
                 <?php
-
                 }
                 
                 ?>
-
             </tbody>
         </table>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>
-                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/title.php')" value="<?=$db -> button?>"></td>
+                    <td width="200px"><input type="button" onclick="op('#cover','#cvr','./modal/title.php?table=<?=$DB -> table;?>')" value="<?=$db -> button?>"></td>
                     <td class="cent"><input type="submit" value="修改確定"><input type="reset" value="重置"></td>
                 </tr>
             </tbody>
