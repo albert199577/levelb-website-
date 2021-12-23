@@ -1,6 +1,6 @@
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli"><?=$db -> title;?></p>
-    <form method="post" action="./api/edit_ad.php">
+    <form method="post" action="./api/edit.php?do=<?=$db -> ad;?>">
         <table width="100%">
             <tbody>
                 <tr class="yel">
