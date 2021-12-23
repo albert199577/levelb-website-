@@ -16,7 +16,7 @@ foreach ($_POST['id'] as $key => $value) {
             break;
             case "admin":
                 $data['acc'] = $_POST['acc'][$key];
-                $data['pw'] = ($_POST['pw'] == $value) ? 1 : 0;
+                $data['pw'] =  $_POST['pw'][$key] ? 1 : 0;
             break;
             case "menu":
                 $data['name'] = $_POST['name'][$key];
