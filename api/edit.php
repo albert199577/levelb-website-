@@ -20,9 +20,8 @@ foreach ($_POST['id'] as $key => $value) {
             break;
             case "menu":
                 $data['name'] = $_POST['name'][$key];
-                $data['href'] = ($_POST['href'] == $value) ? 1 : 0;
-                $data['sh'] = (isset($_POST['sh']) && in_array($value, $_POST['sh'])) ? 1: 0;
-            break;
+                $data['href'] = $_POST['href'][$key];
+                $data['sh'] = ($_POST['sh'] == $value) ? 1 : 0;
             default:
                 //ad, news, image, mvim
                 $data['text'] = isset($_POST['text']) ? $_POST['text'][$key] : "";

@@ -12,7 +12,7 @@
                 </tr>
                 <?php
 
-                $rows = $db -> all();
+                $rows = $db -> all(["parent" => 0]);
 
                 foreach ($rows as $key => $value) {
                     $checked = ($value['sh'] == 1) ? 'checked' : '';
@@ -24,16 +24,19 @@
                     <td>
                         <input type="text" name="href[]" value="<?=$value['href'];?>">
                     </td>
-                    </td>
-                        <input type="hidden" name="id[]" value="<?=$value['id'];?>">
                     <td>
+                        <?=$db -> math('count', '*', ["parent" => $value['id']]);?>
+                    </td>
+                    
+                        <input type="hidden" name="id[]" value="<?=$value['id'];?>">
+                    
                     <td>
                         <input type="checkbox" name="sh[]" value="<?=$value['sh'];?>" <?=$checked?>>
                     </td>
                     <td>
                         <input type="checkbox" name="del[]" value="<?=$value['del'];?>">
                     <td width="200px">
-                        <input type="button" onclick="op('#cover','#cvr','./modal/<?=$db -> table;?>.php?table=<?=$db -> table;?>')" value="<?=$db -> button?>"></td>
+                        <input type="button" onclick="op('#cover','#cvr','./modal/submenu.php?id=<?=$value['id'];?>')" value="<?=$db -> button?>"></td>
                     </td>
                 </tr>
 
