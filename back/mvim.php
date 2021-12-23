@@ -28,7 +28,7 @@
                     </td>
                         <input type="hidden" name="id[]" value="<?=$value['id'];?>">
                     <td>
-                        <input type="button" onclick="op('#cover','#cvr','./modal/upload_mvim.php?id=<?=$value['id'];?>')" value="更換動畫">
+                        <input type="button" onclick="op('#cover','#cvr','./modal/upload.php?do=<?=$db -> table;?>&id=<?=$value['id'];?>')" value="更換動畫">
                     </td>
                 </tr>
                 <?php

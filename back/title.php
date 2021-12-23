@@ -32,7 +32,7 @@
                     </td>
                         <input type="hidden" name="id[]" value="<?=$value['id'];?>">
                     <td>
-                        <input type="button" onclick="op('#cover','#cvr','./modal/upload_title.php?id=<?=$value['id'];?>')" value="更新圖片">
+                        <input type="button" onclick="op('#cover','#cvr','./modal/upload.php?do=<?=$db -> table;?>&id=<?=$value['id'];?>')" value="更新圖片">
                     </td>
                 </tr>
                 <?php
