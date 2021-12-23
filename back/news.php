@@ -9,10 +9,16 @@
                     <td width="20%">刪除</td>
                 </tr>
                 <?php
-
-                $rows = $db -> all();
-
-                foreach ($rows as $key => $value) {
+                $all = $db -> math("count", "*");
+                $div = 4;
+                $pages = ceil($all / $div);
+                $now = $_GET['p'] ?? 1;
+                $start = ($now - 1) * $div;
+                $last_p = $now - 1;
+                $next_p = $now + 1;
+                $rows = $db -> all(" limit $start, $div");
+                
+                foreach($rows as $key => $value){
                     $checked = ($value['sh'] == 1) ? 'checked' : '';
                 ?>
                 <tr class="">
@@ -36,6 +42,23 @@
 
             </tbody>
         </table>
+        <div class="cent">
+            <?php
+                if ($now > 1) {
+                    echo "<a style='margin: 5px;' href='?do={$db -> table}&p={$last_p}'><span> &#60; </span></a>";
+                } 
+                for($i = 1; $i <= $pages; $i++) {
+                    if ($now == $i) {
+                        echo "<a style='font-size: 2rem;margin: 5px;' href='?do={$db -> table}&p=$i'> $i </a>";
+                    } else {
+                        echo "<a style='margin: 5px;' href='?do={$db -> table}&p=$i'> $i </a>";
+                    }
+                }
+                if ($now < $pages) {
+                    echo "<a style='margin: 5px;' href='?do={$db -> table}&p={$next_p}'><span> &#62; </span></a>";
+                }
+            ?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

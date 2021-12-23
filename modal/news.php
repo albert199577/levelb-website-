@@ -5,8 +5,8 @@
         <tr>
             <td>最新消息資料:</td>
             <td>
-                <textarea name="text" id="" cols="30" rows="10">
-                    <?=$rows['text'];?>
+                <textarea name="text" id="" rows="10">
+
                 </textarea>
             </td>
         </tr>
