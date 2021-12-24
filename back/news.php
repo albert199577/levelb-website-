@@ -24,6 +24,7 @@
                 <tr class="">
                     <td>
                         <input type="text" name="text[]" value="<?=$value['text'];?>">
+                        
                     </td>
                     <td>
                         <input type="checkbox" name="sh[]" value="<?=$value['id'];?>" <?=$checked?>>
