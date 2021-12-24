@@ -22,7 +22,7 @@
 			foreach ($news as $key => $value) {
 				echo "<li>";
 				echo mb_substr($value["text"], 0, 20);
-				echo "<div class='all' style='display: none'>{$value["text"]}</div>";
+				echo "<div class='ssaa' style='display: none'>{$value["text"]}</div>";
 				echo "</li>";
 			}
 			?>

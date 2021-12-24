@@ -49,41 +49,43 @@
 
 
 				?>
-				<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
-						<script>
-						$(".sswww").hover(
-							function ()
-							{
-								$("#alt").html(""+$(this).children(".all").html()+"").css({"top":$(this).offset().top-50})
-								$("#alt").show()
-							}
-						)
-						$(".sswww").mouseout(
-							function()
-							{
-								$("#alt").hide()
-							}
-						)
-						</script>
+				
 								<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 					<!--右邊-->   
 					<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;back.php&#39;)">管理登入</button>
-					<div style="width:89%; height:480px;" class="dbor">
+					<div style="width:89%; height:480px;" class="dbor" style="dip">
 						<span class="t botli">校園映象區</span>
-												<script>
-							var nowpage=0,num=0;
-							function pp(x)
-							{
-								var s,t;
-								if(x==1&&nowpage-1>=0)
-								{nowpage--;}
-								if(x==2&&(nowpage+1)*3<=num*1+3)
-								{nowpage++;}
+							<div class="t" style="padding: 0" onclick="pp(1)"><img src="./icon/up.jpg" alt="" class=""></div>
+							<?php
+								$imgs = $Image -> all(['sh' => 1]);
+								foreach ($imgs as $key => $value) {		
+							?>
+							
+							<div class="t im cent" id="ssaa<?=$key;?>">
+								<img src="img/<?=$value['img'];?>" alt="" width="100px" heigh="100px" style="border: solid 1px orange">
+							</div>
+							<?php
+							}				
+							?>
+
+							<div class="t" style="padding: 0" onclick="pp(2)"><img src="./icon/dn.jpg" alt="" class=""></div>
+
+
+
+						<script>
+							var nowpage = 0, num = <?=$Image -> math("count", "*", ['sh' => 1]);?>;
+							function pp(x) {
+								var s, t;
+								if (x == 1 && nowpage - 1 >= 0) {
+									nowpage--;
+								}
+								if (x == 2 && (nowpage + 3) < num )) {
+									nowpage++;
+								}
 								$(".im").hide()
-								for(s=0;s<=2;s++)
-								{
-									t=s*1+nowpage*1;
-									$("#ssaa"+t).show()
+								for (s = 0; s <= 2; s++) {
+									t = s * 1 + nowpage * 1;
+									$("#ssaa" + t).show()
 								}
 							}
 							pp(1)
